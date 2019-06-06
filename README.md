@@ -110,7 +110,7 @@ This configuration is with 1 K80 Tesla GPU with 12 GB GPU Memory (AWS p2.xlarge 
   export DG_MODEL_OUT=Path to save the Delete and Generate model weights
   ```
   ```bash
-  python openai_gpt_delete_and_edit.py \
+  python openai_gpt_delete_and_generate.py \
   --model_name openai-gpt \
   --do_train \
   --do_eval \
