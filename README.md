@@ -89,7 +89,7 @@ We have used [BERT](https://arxiv.org/abs/1810.04805) for classification. This c
   --do_train \
   --do_lower_case \
   --train_batch_size=32 \
-  --num_train_epochs=1 \
+  --num_train_epochs=1 
   ```
 This configuration is with 1 K80 Tesla GPU with 12 GB GPU Memory (AWS p2.xlarge instance). The batch size can be modified based on the max_seq_length. The code can be used with multiple GPUs and batch size can be increased proportanally. For p2.8xlarge, train_batch_size = 256 and for p2.16xlarge, train_batch_size=512.
 
@@ -117,8 +117,8 @@ This configuration is with 1 K80 Tesla GPU with 12 GB GPU Memory (AWS p2.xlarge 
   --train_dataset $DG_TRAIN_DATA \
   --eval_dataset $DG_EVAL_DATA \
   --output_dir $DG_MODEL_OUT \ 
-  --train_batch_size 32
-  --eval_batch_size 32
+  --train_batch_size 32 \
+  --eval_batch_size 32 \
   --max_seq_length 85 
   ```
 
@@ -136,8 +136,8 @@ This configuration is with 1 K80 Tesla GPU with 12 GB GPU Memory (AWS p2.xlarge 
   --train_dataset $DRG_TRAIN_DATA \
   --eval_dataset $DRG_EVAL_DATA \
   --output_dir $DRG_MODEL_OUT \ 
-  --train_batch_size 32
-  --eval_batch_size 32
+  --train_batch_size 32 \
+  --eval_batch_size 32 \
   --max_seq_length 85 
   ```
 
