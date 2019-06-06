@@ -145,3 +145,11 @@ This configuration is with 1 K80 Tesla GPU with 12 GB GPU Memory (AWS p2.xlarge 
 
 ### 5. Style transfer on test data:
   * Run **_OpenAI_GPT_Pred.ipynb_** for generating style transfer on the test data.
+  
+# Python Packages
+1. torch                     1.0.1.post2
+2. pandas  >=     0.23.4
+3. numpy >=      1.15.4
+4. python >=      3.7.1
+5. tqdm    >=       4.28.1 
+
