@@ -143,3 +143,5 @@ This configuration is with 1 K80 Tesla GPU with 12 GB GPU Memory (AWS p2.xlarge 
 
 This configuration is with 1 K80 Tesla GPU with 12 GB GPU Memory (AWS p2.xlarge instance). The batch size can be modified based on the max_seq_length. The code can be used with multiple GPUs and batch size can be increased proportanally. For p2.8xlarge, train_batch_size = 256 and for p2.16xlarge, train_batch_size=512. **All the sentences with number of tokens > max_seq_length will be removed from the training.**
 
+### 5. Style transfer on test data:
+  * Run **_OpenAI_GPT_Pred.ipynb_** for generating style transfer on the test data.
