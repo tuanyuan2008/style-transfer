@@ -119,7 +119,7 @@ This configuration is with 1 K80 Tesla GPU with 12 GB GPU Memory (AWS p2.xlarge 
   --train_batch_size 32 \
   --eval_batch_size 32 \
   --max_seq_length 85 \
-  --output_dir $DG_MODEL_OUT \ 
+  --output_dir $DG_MODEL_OUT 
   ```
 
   * Run **__openai_gpt_delete_retrive_and_generate.py_** for training **Delete, Retrieve and Generate** model. Below is the sample command.
@@ -138,7 +138,7 @@ This configuration is with 1 K80 Tesla GPU with 12 GB GPU Memory (AWS p2.xlarge 
   --train_batch_size 32 \
   --eval_batch_size 32 \
   --max_seq_length 85 \
-  --output_dir $DRG_MODEL_OUT \ 
+  --output_dir $DRG_MODEL_OUT 
   ```
 
 This configuration is with 1 K80 Tesla GPU with 12 GB GPU Memory (AWS p2.xlarge instance). The batch size can be modified based on the max_seq_length. The code can be used with multiple GPUs and batch size can be increased proportanally. For p2.8xlarge, train_batch_size = 256 and for p2.16xlarge, train_batch_size=512. **All the sentences with number of tokens > max_seq_length will be removed from the training.**
