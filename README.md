@@ -1,5 +1,5 @@
 # Introduction
-This repository have scripts and Jupyter-notebooks to perform all the different steps involve in **Delete, Retrieve and Generate** mechanism. 
+This repository have scripts and Jupyter-notebooks to perform all the different steps involved in **Delete, Retrieve and Generate** mechanism. 
 The mechanism is used for **_text style transfer_** for the case when **_parallel corpus_** for both the style is not available. This mechanism works on the assumption that the text of any style is made of **two** parts: **1. Content** and **2. Attributes** . Below is a simpe example of a resturent review.
 ```
 The food was great and the service was excellent.
