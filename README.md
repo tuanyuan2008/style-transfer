@@ -1,6 +1,32 @@
 # Introduction
 This repository have scripts and Jupyter-notebooks to perform all the different steps involve in **Delete, Retrieve and Generate** mechanism. 
-The mechanism is used for **_text style transfer_** in two different ways. First way is known as the **Delete and Generate** in which Generator transfers the style of the content (i.e. Positive -> Negative, Romantic -> Humarous, Republican -> Democrats) by choosing attributes automatically learnt during the training. Second way is known as the **Delete, Retrieve and Generate** in which Generator uses attributes provided by the user to generate sentence from the content.
+The mechanism is used for **_text style transfer_** for the case when **_parallel corpus_** for both the style is not available. This mechanism works on the assumption that the text of any style is made of **two** parts: **1. Content** and **2. Attributes** . Below is a simpe example of a resturent review.
+```
+The food was great and the service was excellent.
+Content: The food was and the service was
+Attributes: great, excellent
+```
+We generate the sentence in the different style for a given content in in two different ways. First way is known as the **Delete and Generate** in which model transfers the style of the text (i.e. Positive -> Negative, Romantic -> Humarous, Republican -> Democrats) by choosing attributes automatically learnt during the training. Second way is known as the **Delete, Retrieve and Generate** in which Generator uses attributes provided by the user to generate sentence from the content. Below as the few example.
+
+**Generate Negative text with Delete and Generate**
+```
+Content: The food was and the service was
+Output: The food tasteless and the service was horrible.
+```
+
+**Generate Negative text with Delete, Retrieve and Generate**
+```
+Content: The food was and the service was
+Attributes: blend, slow
+Output: The food was blend and the service was slow.
+```
+
+
+
+
+The process of style transfer consist multiple steps. 
+1. Prepare Training data
+
 
 Next section describes steps requies from preparing the data to run inference. 
 ## Steps
