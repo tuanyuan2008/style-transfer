@@ -152,4 +152,5 @@ This configuration is with 1 K80 Tesla GPU with 12 GB GPU Memory (AWS p2.xlarge 
 3. numpy >=      1.15.4
 4. python >=      3.7.1
 5. tqdm    >=       4.28.1 
-We have used the BERT tokenizer which isn't the default. The default tokenizer is using spacy library. To replicate the exact results please run in the environment where spacy isn't installed.
+
+**Note**:We have used the BERT tokenizer which isn't the default. The default tokenizer is using spacy library. To replicate the exact results please run in the environment where spacy isn't installed.
