@@ -1,26 +1,27 @@
 # Introduction
-This repository have scripts and Jupyter-notebooks to perform all the different steps involved in **Delete, Retrieve and Generate** mechanism. 
-The mechanism is used for **_text style transfer_** for the case when **_parallel corpus_** for both the style is not available. This mechanism works on the assumption that the text of any style is made of **two** parts: **1. Content** and **2. Attributes** . Below is a simpe example of a resturent review.
+This repository has scripts and Jupyter-notebooks to perform all the different steps involved in **Delete, Retrieve and Generate** mechanism (link to the pre-print will be added here soon). 
+This mechanism is used for **_text style transfer_** when a **_parallel corpus_** for both the styles is not available. This mechanism works on the assumption that the text of any style is made of **two** parts: **1. Content** and **2. Attributes** . Below is a simpe example of a resturent review.
 ```
 The food was great and the service was excellent.
 Content: The food was and the service was
 Attributes: great, excellent
 ```
-We transfer the style of a given content in in two different ways. First way is known as the **Delete and Generate** in which model transfers the style of the text (i.e. Positive -> Negative, Romantic -> Humarous, Republican -> Democrats) by choosing attributes automatically learnt during the training. Second way is known as the **Delete, Retrieve and Generate** in which model uses attributes provided by the user to generate sentence from the content. Below as the few example.
+We transfer the style of a given content in in two different ways. The first is referred to as the **Delete and Generate** approach (referred to as Blind Generative Style Transformer - B-GST in the paper) in which the model transfers the style of the text by choosing attributes automatically learnt during training. The second is referred to as the **Delete, Retrieve and Generate** (referred to as Guided Generative Style Transformer - G-GST in the paper) approach in which the model uses attributes retrieved from the target corpus to generate target sentences from the content. Below are a few examples.
 
-**Generate Negative text with Delete and Generate**
+**Generative a negative sentiment sentence from content (neutral) with Delete and Generate**
 ```
 Content: The food was and the service was
 Output: The food tasteless and the service was horrible.
 ```
 
-**Generate Negative text with Delete, Retrieve and Generate**
+**Generative a negative sentiment sentence from content (neutral) with Delete, Retrieve and Generate**
 ```
 Content: The food was and the service was
 Attributes: blend, slow
 Output: The food was blend and the service was slow.
 ```
-The names **Delete and Generate** and **Delete, Retrieve and Generate** are based on the steps involved in preparing training and test(reference) data. In **Delete and Generate**,  we prepare the training data by removing the attribute words from the text and during training use Language Modeling to generate the sentence given context and target style. Below is an example.
+The names **Delete and Generate** and **Delete, Retrieve and Generate** are based on the steps involved in preparing training and test(reference) data. 
+In **Delete and Generate**,  we prepare the training data by removing the attribute words from the text and during training teach the model to generate the sentence given content and target style. This is trained the same way a language model is trained. Below is an example.
 ```
 The food was great and the service was excellent.
 Content: The food was and the service was
@@ -30,13 +31,13 @@ The food was awful and the service was slow.
 Content: The food was and the service was
 Training input: <NEG> <CON_START> The food was and the service was <START> The food was awful and the service was slow . <END>
 ```
-Cross entropy loss is calculated for all the tokens predicted after **_\<START\>_** token. For inference, we add opposite target style with the content and generate the sentence. For the case of sentiment style transfer, all the positive sentiment test data sentences will have **_\<NEG\>_** and all negative sentiment sentences will have **_\<POS\>_** token before the content. Below is an example.
+Cross entropy loss is calculated for all the tokens predicted after **_\<START\>_** token. For inference, we represent target style using the same tags as used in training, and provide the content as inputs to the model. For the case of sentiment style transfer, all the positive sentiment test data sentences will have **_\<NEG\>_** and all negative sentiment sentences will have **_\<POS\>_** token before the content. Below is an example.
 ```
 Negative test data: <POS> <CON_START> the food was and the service was <START> 
 Positive test data: <NEG> <CON_START> the food was and the service was <START> 
 ```
 
-In **Delete, Retrieve and Generate**, we prepare the training data similar to the **Delete and Generate** but insted of target text style we specify the exact attributes to use for generating the sentence from the content. Below is the example.
+In **Delete, Retrieve and Generate**, we prepare the training data similar to the **Delete and Generate** but insted of target text style we specify the exact attributes to be used for generating the sentence from the content. Below is an example.
 ```
 The food was great and the service was excellent.
 Content: The food was and the service was
@@ -54,7 +55,7 @@ Positive test data: <ATTR_WORDS> blend disappointing <CON_START> the food was an
 ```
 
 
-**The process of style transfer consist multiple steps.** 
+**The process of style transfer consists of multiple steps.** 
 
 **_1. Prepare Training data_**
   * Train a classifier which uses attention mechanism. Here we have used [BERT](https://arxiv.org/abs/1810.04805) classifier.
@@ -68,10 +69,12 @@ Positive test data: <ATTR_WORDS> blend disappointing <CON_START> the food was an
 **_3. Generate sentences_**
   * Generate sentences from the test(reference) files.
 
-Next section describes steps requies from preparing the data to run inference. 
+The following section describes steps required from preparing the data to running inference. 
+
 # Steps
 ### 1. Classifier Training:
-We have used [BERT](https://arxiv.org/abs/1810.04805) for classification. This classification trainings helps to find the attributes from the sentence. We have come up with a noval way to choose one perticular head of BERT model which captures the important details which is responsible for better classification. 
+
+We have used [BERT](https://arxiv.org/abs/1810.04805) for classification. This classification trainings helps to find the attributes from the sentence. We choose one particular head of BERT model, for which the tokens which have high attention weights are those that are stylistic attributes of the sentence. 
   * Classifier Training Data Preparation: **_BERT_Classification_Training_data_preparation.ipynb_** notebook creates training, testing and dev data. Modify the the paths of the input and output files.
   * BERT Classifier Training: Run the below command to train BERT classifier.
   ```bash
@@ -91,16 +94,16 @@ We have used [BERT](https://arxiv.org/abs/1810.04805) for classification. This c
   --train_batch_size=32 \
   --num_train_epochs=1 
   ```
-This configuration is with 1 K80 Tesla GPU with 12 GB GPU Memory (AWS p2.xlarge instance). The batch size can be modified based on the max_seq_length. The code can be used with multiple GPUs and batch size can be increased proportanally. For p2.8xlarge, train_batch_size = 256 and for p2.16xlarge, train_batch_size=512.
+We ran this with a single K80 Tesla GPU with 12 GB GPU Memory (AWS p2.xlarge instance). The batch size can be modified based on the max_seq_length. The code can be used with multiple GPUs and batch size can be increased proportanally. For p2.8xlarge, suggested train_batch_size = 256 and for p2.16xlarge, train_batch_size=512.
 
 
 ### 2. Selecting Attention Head:
-  * Run **_Head_selection.ipynb_** for getting the information about the attention heads which captures attribute words properly. The final result will be a list of tuples (Block/layer, Head, Score) sorted from best to worst. Use the first Block/layer and Head combination in the further steps.
+  * Run **_Head_selection.ipynb_** for finding out which attention heads capture attribute words properly. The final result will be a list of tuples (Block/layer, Head, Score) sorted from best to worst. Use the first Block/layer and Head combination in the further steps.
 
 ### 3. Prepare training and inference data:
   * Run **_BERT_DATA_PREPARATION.ipynb_** for preparing training and inference data for **Delete and Generate** . Use the best layer, Head combination from the previous step in **run_attn_examples()** function.
-  * Run **Delete_Retrieve_Generate_Data_Preparation.ipynb** to generate training data for **Delete, Retrieve and Generate** . It generates train, dev and test files. Use the files generated by **process_file_v1()** function as it shuffles the attributes and randomly samples only 70% of the attributes to train the generator model to generate smooth sentences instead of teaching just feeling the blanks.
-  * Run **tfidf_retrieve.ipynb** to generate inference data by retrieving attributes of closest match from opposite training corpus. 
+  * Run **Delete_Retrieve_Generate_Data_Preparation.ipynb** to generate training data for **Delete, Retrieve and Generate** . It generates train, dev and test files. Use the files generated by **process_file_v1()** function as it shuffles the attributes and randomly samples only 70% of the attributes to train the generator model to generate smooth sentences instead of teaching it to just fill the blanks.
+  * Run **tfidf_retrieve.ipynb** to generate inference data by retrieving attributes of closest match from target style training corpus. 
   
 ### 4. Generator Model training:
   * Run **_openai_gpt_delete_and_generate.py_** for training **Delete and Generate** model. Below is the sample command.
@@ -141,7 +144,7 @@ This configuration is with 1 K80 Tesla GPU with 12 GB GPU Memory (AWS p2.xlarge 
   --output_dir $DRG_MODEL_OUT 
   ```
 
-This configuration is with 1 K80 Tesla GPU with 12 GB GPU Memory (AWS p2.xlarge instance). The batch size can be modified based on the max_seq_length. The code can be used with multiple GPUs and batch size can be increased proportanally. For p2.8xlarge, train_batch_size = 256 and for p2.16xlarge, train_batch_size=512. **All the sentences with number of tokens > max_seq_length will be removed from the training.**
+This configuration is with 1 K80 Tesla GPU with 12 GB GPU Memory (AWS p2.xlarge instance). The batch size can be modified based on the max_seq_length. The code can be used with multiple GPUs and batch size can be increased proportionally. For p2.8xlarge, suggested train_batch_size = 256 and for p2.16xlarge, train_batch_size=512. **All the sentences with number of tokens > max_seq_length will be removed from the training.**
 
 ### 5. Style transfer on test data:
   * Run **_OpenAI_GPT_Pred.ipynb_** for generating style transfer on the test data.
@@ -153,4 +156,4 @@ This configuration is with 1 K80 Tesla GPU with 12 GB GPU Memory (AWS p2.xlarge 
 4. python >=      3.7.1
 5. tqdm    >=       4.28.1 
 
-**Note**:We have used the BERT tokenizer which isn't the default. The default tokenizer is using spacy library. To replicate the exact results please run in the environment where spacy isn't installed.
+**Important Note**: We have used the BERT tokenizer which isn't the default. The default tokenizer is using spacy library. To replicate the exact results please run in the environment where spacy isn't installed. Having spacy installed will tokenize even the special tokens, and lead to different tokens than we have used, leading to unpredictable results.
