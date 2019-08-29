@@ -158,4 +158,5 @@ This configuration is with 1 K80 Tesla GPU with 12 GB GPU Memory (AWS p2.xlarge 
 6. boto3 >= 1.9.107
 7. requests >= 2.21.0
 8. regex >= 2019.2.21
+
 **Important Note**: We have used the BERT tokenizer which isn't the default. The default tokenizer is using spacy library. To replicate the exact results please run in the environment where spacy isn't installed. Having spacy installed will tokenize even the special tokens, and lead to different tokens than we have used, leading to unpredictable results.
