@@ -163,4 +163,11 @@ This configuration is with 1 K80 Tesla GPU with 12 GB GPU Memory (AWS p2.xlarge 
 
 # Datasets
 ### 1. Yelp, Amazon & ImageCaption:
-The dataset we have used can be downloaded from https://github.com/lijuncen/Sentiment-and-Style-Transfer/tree/master/data
+The dataset we have used can be downloaded from https://github.com/Bhargav5/Sentiment-and-Style-Transfer/tree/master/data
+
+### 2. Political:
+The dataset has been downloaded from http://tts.speech.cs.cmu.edu/style_models/political_data.tar
+
+### 3. Gender:
+The dataset has been downloaded from http://tts.speech.cs.cmu.edu/style_models/gender_data.tar
+
