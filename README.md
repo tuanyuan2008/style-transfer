@@ -161,7 +161,8 @@ This configuration is with 1 K80 Tesla GPU with 12 GB GPU Memory (AWS p2.xlarge 
 ### 5. Style transfer on test data:
   * Run **_OpenAI_GPT_Pred.ipynb_** for generating style transfer on the test data.
   
-
+# Models
+We have shared the trained model weights for Yelp dataset for easy testing on test dataset. One can download it from [here](https://drive.google.com/open?id=1tTvwm_MafHxTMhwo93VvzK_EeGoUpFx8) and directly use in **step 5**.
 
 # Datasets
 ### 1. Yelp, Amazon & ImageCaption:
