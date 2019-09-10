@@ -161,6 +161,9 @@ This configuration is with 1 K80 Tesla GPU with 12 GB GPU Memory (AWS p2.xlarge 
 ### 5. Style transfer on test data:
   * Run **_OpenAI_GPT_Pred.ipynb_** for generating style transfer on the test data.
   
+# Resuls:
+All the experiment results are present [here](https://github.com/agaralabs/transformer-drg-style-transfer/tree/master/results). Column named **BERT_DEL** have the results for B-GST model and column named **BERT_RET_TFIDF** have the results for G-GST model. 
+  
 # Models
 We have shared the trained model weights for Yelp dataset for easy testing on test dataset. One can download it from [here](https://drive.google.com/open?id=1tTvwm_MafHxTMhwo93VvzK_EeGoUpFx8) and directly use in **step 5**.
 
