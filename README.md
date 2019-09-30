@@ -165,7 +165,7 @@ This configuration is with 1 K80 Tesla GPU with 12 GB GPU Memory (AWS p2.xlarge 
 All the outputs on the test (reference) sets for each of the 5 datasets are present [here](https://github.com/agaralabs/transformer-drg-style-transfer/tree/master/results). Each directory is named after a dataset and contains 2 csv files - one for each direction of style transfer. In each of the csv files, the column named **BERT_DEL** has outputs of our B-GST model and the column named **BERT_RET_TFIDF** has outputs of our G-GST model. **These results can be used for replicability.**
   
 # Models
-As an example, we have shared the trained model weights for Yelp dataset for easy testing on test dataset. One can download it from [here](https://drive.google.com/open?id=1tTvwm_MafHxTMhwo93VvzK_EeGoUpFx8) and directly use in **step 5**.
+As an example, we have shared the trained model weights for Yelp dataset for easy testing on test dataset. It can be downloaded from [here](https://drive.google.com/open?id=1tTvwm_MafHxTMhwo93VvzK_EeGoUpFx8) and directly use in **step 5**.
 
 # Datasets
 ### 1. Yelp, Amazon & ImageCaption:
