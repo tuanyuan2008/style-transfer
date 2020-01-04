@@ -177,3 +177,13 @@ The dataset we have used can be downloaded from http://tts.speech.cs.cmu.edu/sty
 ### 3. Gender:
 The dataset we have used can be downloaded from http://tts.speech.cs.cmu.edu/style_models/gender_data.tar
 
+# Citation
+If you use our reseach or code please cite the work,
+"""
+@inproceedings{Sudhakar2019TransformingDR,
+  title={Transforming Delete, Retrieve, Generate Approach for Controlled Text Style Transfer},
+  author={Akhilesh Sudhakar and Bhargav Upadhyay and Arjun Maheswaran},
+  booktitle={EMNLP/IJCNLP},
+  year={2019}
+}
+"""
