@@ -1,5 +1,5 @@
 # Introduction
-This repository has scripts and Jupyter-notebooks to perform all the different steps involved in [**Transforming Delete, Retrieve, Generate Approach for Controlled Text Style Transfer**](https://www.aclweb.org/anthology/D19-1322.pdf)  
+This repository has scripts and Jupyter-notebooks to perform all the different steps involved in [**Transforming Delete, Retrieve, Generate Approach for Controlled Text Style Transfer**](https://www.aclweb.org/anthology/D19-1322/)  
 This mechanism is used for **_text style transfer_** when a **_parallel corpus_** for both the styles is not available. This mechanism works on the assumption that the text of any style is made of **two** parts: **1. Content** and **2. Attributes** . Below is a simpe example of a resturent review.
 ```
 The food was great and the service was excellent.
