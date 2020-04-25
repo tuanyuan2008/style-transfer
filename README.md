@@ -7,6 +7,8 @@ This repository is largely forked from https://github.com/agaralabs/transformer-
 
 In terms of directory structure, our LSTM / RNN baseline model (sourced from https://github.com/rpryzant/delete_retrieve_generate) is in baseline/. Our raw data, preprocessed data, and processed and tokenized data can be found under data/. The trained Delete and Generate model weights and parameters can be found under dg_model_weights/ and the trained Delete Retrieve Generate model weights and parameters can be found under dgr_model_weights/. Losses for both aforementioned models as well as the BERT Classifier are in losses/. The trained BERT Classifier can be found under models/.
 
+Part (4) may be run alone using the pre-trained models listed in the directories above. Please note that the models are stored using git-lfs; this may affect how the model should be loaded. We have found calling !sudo apt-get install git-lfs followed by !git-lfs pull allows us to work with git-lfs files on Colab. Also note that git-lfs has somewhat strict usage limits and may require you to purchase additional storage or bandwith space.
+
 Finally, some notebooks may not run on Jupyter because of !sudo apt-get install commands, which to our knowledge, is only a feature on Colab. There may also be some Path names that have to be changed before running.
 
 Again, this repository is sourced from https://github.com/agaralabs/transformer-drg-style-transfer. The instructions provided at the source repository work for the most part on this repository, with modifications listed above.
