@@ -33,4 +33,4 @@ Technical Requirements
 >**Instructions**
 >
 >1. Clone this repository.
->2. Follow the instructions listed at https://github.com/agaralabs/transformer-drg-style-transfer, noting the exceptions lsited above.
+>2. Follow the instructions listed at https://github.com/agaralabs/transformer-drg-style-transfer, noting the exceptions listed above.
