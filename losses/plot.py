@@ -12,13 +12,24 @@ import pickle
 
 # f.close()
 
-with open('drg_losses.data', 'rb') as f:
+# with open('drg_losses.data', 'rb') as f:
+#     # read the data as binary data stream
+#     dg_losses = pickle.load(f)
+#     plt.title('Delete-Retrieve-Generate Model Losses Per Iteration')
+#     plt.xlabel('Iteration')
+#     plt.ylabel('Loss')
+#     plt.plot(dg_losses)
+#     plt.savefig('drg_loss.png')
+
+# f.close()
+
+with open('bert_class_losses.data', 'rb') as f:
     # read the data as binary data stream
     dg_losses = pickle.load(f)
-    plt.title('Delete-Retrieve-Generate Model Losses Per Iteration')
+    plt.title('BERT Classifier Losses Per Iteration')
     plt.xlabel('Iteration')
     plt.ylabel('Loss')
     plt.plot(dg_losses)
-    plt.savefig('drg_loss.png')
+    plt.savefig('bert_class_loss.png')
 
 f.close()
